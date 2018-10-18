@@ -7,7 +7,10 @@ class Post(models.Model):
     text = models.TextField()
     created_date = models.DateTimeField(default=timezone.now)
     published_date = models.DateTimeField(blank=True, null=True)
-    n_pies = models.PositiveSmallIntegerField(default=None) # careful---0 is also allowed by this field
+
+    # blank=True means field is not required (form validation)
+    # null=True  means a blank field (None in python) is translated to NULL in the database
+    n_pies = models.PositiveSmallIntegerField(blank=True, null=True) # careful---0 is also allowed by this field
 
     def publish(self):
         self.published_date = timezone.now()
