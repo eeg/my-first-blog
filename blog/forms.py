@@ -3,6 +3,9 @@ from .models import Post
 
 class PostForm(forms.ModelForm):
 
+    error_css_class = 'error'
+    required_css_class = 'required'
+
     class Meta:
         model = Post
         fields = ('title', 'text', 'n_pies', 'n_slices')
