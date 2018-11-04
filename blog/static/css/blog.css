@@ -58,3 +58,9 @@ h1, h2, h3, h4 {
     color: #ff9400;
     font-style: italic;
 }
+
+.required:after {
+    color: #ff9400;
+    content: ' *';
+    display:inline;
+}
