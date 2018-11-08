@@ -3,6 +3,14 @@ from .models import Post
 from django.utils import timezone
 from .forms import PostForm
 
+from django.views.generic.edit import CreateView
+
+class PostCreateView(CreateView):
+    '''create, with crispy'''
+    model = Post
+    fields = ('title', 'text', 'n_pies', 'n_slices')
+    template_name = "blog/create_post.html"
+
 def post_list(request):
     posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
     return render(request, 'blog/post_list.html', {'posts':posts})
