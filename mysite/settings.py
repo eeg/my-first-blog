@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'blog',
     'characters',
+    'traits',
 ]
 
 MIDDLEWARE = [
@@ -69,6 +70,8 @@ TEMPLATES = [
         },
     },
 ]
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 WSGI_APPLICATION = 'mysite.wsgi.application'
 
