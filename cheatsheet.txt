@@ -1,6 +1,7 @@
 source myvenv/bin/activate
 
 python manage.py runserver
+python manage.py shell
 
 # how it's supposed to work
 python manage.py makemigrations
