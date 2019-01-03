@@ -1,6 +1,6 @@
 from django import forms
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Submit
+from crispy_forms.layout import Submit, Fieldset, Layout
 from .models import Trait
 
 class TraitForm(forms.ModelForm):
@@ -13,3 +13,5 @@ class TraitForm(forms.ModelForm):
         self.helper = FormHelper()
         self.helper.form_method = 'post'
         self.helper.add_input(Submit('submit', 'Save trait record'))
+        self.helper.layout = Layout(Fieldset('Taxonomy', 'genus', 'species'),
+                                    Fieldset('Everything else', 'isi', 'breeding_system'))
