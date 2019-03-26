@@ -10,4 +10,4 @@ class PublocalAdmin(admin.ModelAdmin):
     ]
 
 admin.site.register(Trait)
-admin.site.register(Publocal)
+admin.site.register(Publocal, PublocalAdmin)
