@@ -1,6 +1,11 @@
 from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
 
+class Publocal(models.Model):
+
+    citekey = models.CharField(max_length=128)
+    # also has field traitref, created by ForeignKey within Trait
+
 class Trait(models.Model):
 
     genus = models.CharField(max_length=128)
@@ -12,3 +17,5 @@ class Trait(models.Model):
 
     bs_choices = (('SI', 'Self-incompatible'), ('SC', 'Self-compatible'))
     breeding_system = models.CharField(blank=True, null=True, choices=bs_choices, max_length=2)
+
+    pubref = models.ForeignKey(Publocal, related_name='traitref', on_delete=models.PROTECT)
