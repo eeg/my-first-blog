@@ -6,6 +6,9 @@ class Publocal(models.Model):
     citekey = models.CharField(max_length=128)
     # also has field traitref, created by ForeignKey within Trait
 
+    def __str__(self):
+        return(self.citekey)
+
 class Trait(models.Model):
 
     genus = models.CharField(max_length=128)
@@ -18,4 +21,4 @@ class Trait(models.Model):
     bs_choices = (('SI', 'Self-incompatible'), ('SC', 'Self-compatible'))
     breeding_system = models.CharField(blank=True, null=True, choices=bs_choices, max_length=2)
 
-    pubref = models.ForeignKey(Publocal, related_name='traitref', on_delete=models.PROTECT)
+    pubref = models.ForeignKey(Publocal, related_name='traitref', on_delete=models.PROTECT, verbose_name='ref to a pub')
