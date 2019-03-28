@@ -8,3 +8,5 @@ python manage.py makemigrations
 python manage.py migrate
 # ?
 python manage.py migrate --run-syncdb
+
+pip install -U django  # update django version
