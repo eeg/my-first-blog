@@ -10,5 +10,8 @@ class PublocalAdmin(admin.ModelAdmin):
         TraitInline,
     ]
 
-admin.site.register(Trait)
+class TraitAdmin(admin.ModelAdmin):
+    list_display = ('__str__', 'pubref')
+
+admin.site.register(Trait, TraitAdmin)
 admin.site.register(Publocal, PublocalAdmin)
