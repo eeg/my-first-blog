@@ -3,6 +3,7 @@ from .models import Trait, Publocal
 
 class TraitInline(admin.TabularInline):
     model = Trait
+    show_change_link = True
 
 class PublocalAdmin(admin.ModelAdmin):
     inlines = [
