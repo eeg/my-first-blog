@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'blog',
     'characters',
     'traits',
+    'import_export',
 ]
 
 MIDDLEWARE = [
