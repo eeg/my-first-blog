@@ -18,7 +18,16 @@ class TraitResource(resources.ModelResource):
         #  report_skipped = True
         #  skip_unchanged = True
 
+    def before_import(self, dataset, using_transactions, dry_run=True, collect_failed_rows=False, **kwargs):
+        if 'id' not in dataset.headers:
+            dataset.insert_col(0, lambda row: '', header='id')
+
 class PublocalResource(resources.ModelResource):
+
     class Meta:
         model = Publocal
+
+    def before_import(self, dataset, using_transactions, dry_run=True, collect_failed_rows=False, **kwargs):
+        if 'id' not in dataset.headers:
+            dataset.insert_col(0, lambda row: '', header='id')
         #  import_id_fields = ('citekey')
