@@ -12,9 +12,11 @@ class PublocalAdmin(ImportExportModelAdmin):
     inlines = [
         TraitInline,
     ]
+    resource_class = PublocalResource
 
 class TraitAdmin(ImportExportModelAdmin):
     list_display = ('__str__', 'pubref')
+    resource_class = TraitResource
 
 admin.site.register(Trait, TraitAdmin)
 admin.site.register(Publocal, PublocalAdmin)
