@@ -3,7 +3,7 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 
 class Publocal(models.Model):
 
-    citekey = models.CharField(max_length=128)
+    citekey = models.CharField(max_length=128, unique=True)
     author = models.CharField(max_length=128, blank=True, null=True)
     # also has field traitref, created by ForeignKey within Trait
 
