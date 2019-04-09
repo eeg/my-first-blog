@@ -16,6 +16,7 @@ class TraitResource(resources.ModelResource):
     class Meta:
         model = Trait
         clean_model_instances = True
+        #  fields = ('id', 'genus', 'species', 'isi', 'breeding_system', 'pubref')
         #  report_skipped = True
         #  skip_unchanged = True
 
@@ -27,8 +28,8 @@ class PublocalResource(resources.ModelResource):
 
     class Meta:
         model = Publocal
+        #  import_id_fields = ('citekey')
 
     def before_import(self, dataset, using_transactions, dry_run=True, collect_failed_rows=False, **kwargs):
         if 'id' not in dataset.headers:
             dataset.insert_col(0, lambda row: '', header='id')
-        #  import_id_fields = ('citekey')
