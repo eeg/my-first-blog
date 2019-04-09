@@ -15,6 +15,7 @@ class TraitResource(resources.ModelResource):
 
     class Meta:
         model = Trait
+        clean_model_instances = True
         #  report_skipped = True
         #  skip_unchanged = True
 
