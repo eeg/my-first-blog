@@ -10,3 +10,5 @@ python manage.py migrate
 python manage.py migrate --run-syncdb
 
 pip install -U django  # update django version
+
+python manage.py startapp pubs # begin a new app within the project

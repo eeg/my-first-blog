@@ -1,6 +1,7 @@
 from import_export import fields, resources
 from import_export.widgets import ForeignKeyWidget
-from .models import Trait, Publocal
+from .models import Trait
+from pubs.models import Pub
 
 # within Meta, could also...
 #   specify which fields to import/export
@@ -10,7 +11,7 @@ class TraitResource(resources.ModelResource):
     pubref = fields.Field(
                 column_name = 'pubref',
                 attribute = 'pubref',
-                widget = ForeignKeyWidget(Publocal, 'citekey')
+                widget = ForeignKeyWidget(Pub, 'citekey')
             )
 
     class Meta:
@@ -24,16 +25,6 @@ class TraitResource(resources.ModelResource):
         # the unique id and all other columns present in the imported file
         #     skip_changed = False: identical imported rows are recorded as updates
         #     skip_changed = True:  identical imported rows are skipped
-
-    def before_import(self, dataset, using_transactions, dry_run=True, collect_failed_rows=False, **kwargs):
-        if 'id' not in dataset.headers:
-            dataset.insert_col(0, lambda row: '', header='id')
-
-class PublocalResource(resources.ModelResource):
-
-    class Meta:
-        model = Publocal
-        #  import_id_fields = ('citekey')
 
     def before_import(self, dataset, using_transactions, dry_run=True, collect_failed_rows=False, **kwargs):
         if 'id' not in dataset.headers:

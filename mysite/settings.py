@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'blog',
     'characters',
     'traits',
+    'pubs',
     'import_export',
 ]
 
