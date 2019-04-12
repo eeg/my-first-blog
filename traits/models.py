@@ -1,6 +1,7 @@
 from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
 from pubs.models import Pub
+from simple_history.models import HistoricalRecords
 
 class Trait(models.Model):
 
@@ -15,6 +16,8 @@ class Trait(models.Model):
     breeding_system = models.CharField(blank=True, null=True, choices=bs_choices, max_length=2)
 
     pubref = models.ForeignKey(Pub, related_name='traitref', on_delete=models.PROTECT, verbose_name='Pub citekey')
+
+    history = HistoricalRecords()
 
     def __str__(self):
         return(self.genus + ' ' + self.species)
