@@ -18,6 +18,9 @@ class Trait(models.Model):
     pubref = models.ForeignKey(Pub, related_name='traitref', on_delete=models.PROTECT, verbose_name='Pub citekey')
 
     history = HistoricalRecords()
+    changereason = models.TextField(blank=True, null=True)
+    # This changereason field is copied into the history object in TraitAdmin().
+    # It should probably excluded elsewhere (record view, csv export, etc.)
 
     def __str__(self):
         return(self.genus + ' ' + self.species)
