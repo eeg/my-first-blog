@@ -14,8 +14,24 @@ class TraitAdmin(ImportExportModelAdmin, SimpleHistoryAdmin):
 
     resource_class = TraitResource
 
-    #  history_list_display = ['breeding_system', 'isi', 'pubref']
+    # history_list_display = ['breeding_system', 'isi', 'pubref']
     history_list_display = [field.name for field in Trait._meta.get_fields()]
+
+    ## This prints a list of the fields that were changed in each update.
+    ## Not the diff we want, but perhaps on the right track.
+    #
+    # history_list_display = ['get_changed_fields']
+    # def get_changed_fields(self, obj):
+    #     fields = []
+    #     prev = obj.prev_record
+    #     if prev:
+    #         fields = obj.diff_against(prev).changed_fields
+    #     return fields
+    #
+    ## misc other code/note:
+    # delta = new_record.diff_against(old_record)
+    # for change in delta.changes:
+    #     print("{} changed from {} to {}".format(change.field, change.old, change.new))
 
     # move the changereason into the history
     history_list_display.remove('changereason')
