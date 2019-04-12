@@ -79,6 +79,8 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 WSGI_APPLICATION = 'mysite.wsgi.application'
 
+# for use with django-simple-history
+SIMPLE_HISTORY_HISTORY_CHANGE_REASON_USE_TEXT_FIELD = True
 
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
