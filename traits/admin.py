@@ -1,5 +1,6 @@
 from django.contrib import admin
 from import_export.admin import ImportExportModelAdmin
+from simple_history.admin import SimpleHistoryAdmin
 from .models import Trait
 from .resources import TraitResource
 
@@ -7,7 +8,7 @@ class TraitInline(admin.TabularInline):
     model = Trait
     show_change_link = True
 
-class TraitAdmin(ImportExportModelAdmin):
+class TraitAdmin(ImportExportModelAdmin, SimpleHistoryAdmin):
     list_display = ('__str__', 'pubref')
     resource_class = TraitResource
 
