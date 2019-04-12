@@ -14,8 +14,16 @@ class TraitAdmin(ImportExportModelAdmin, SimpleHistoryAdmin):
 
     resource_class = TraitResource
 
-    # history_list_display = ['breeding_system', 'isi', 'pubref']
-    history_list_display = [field.name for field in Trait._meta.get_fields()]
+    #  history_list_display = ['breeding_system', 'isi', 'pubref']
+    history_list_display = [field.name for field in Trait._meta.get_fields()] # all the fields
+
+    # move the changereason into the history
+    history_list_display.remove('changereason')
+    def save_model(self, request, obj, form, change):
+        if change:
+            obj.changeReason = obj.changereason
+            obj.changereason = '' # so the log message isn't reused next time
+        super().save_model(request, obj, form, change)
 
     ## This prints a list of the fields that were changed in each update.
     ## Not the diff we want, but perhaps on the right track.
@@ -32,13 +40,5 @@ class TraitAdmin(ImportExportModelAdmin, SimpleHistoryAdmin):
     # delta = new_record.diff_against(old_record)
     # for change in delta.changes:
     #     print("{} changed from {} to {}".format(change.field, change.old, change.new))
-
-    # move the changereason into the history
-    history_list_display.remove('changereason')
-    def save_model(self, request, obj, form, change):
-        if change:
-            obj.changeReason = obj.changereason
-            obj.changereason = '' # so the log message isn't reused next time
-        super().save_model(request, obj, form, change)
 
 admin.site.register(Trait, TraitAdmin)
