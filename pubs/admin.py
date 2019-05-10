@@ -10,4 +10,7 @@ class PubAdmin(ImportExportModelAdmin):
     ]
     resource_class = PubResource
 
+    list_display = ('citekey', 'author') # get error if trying to include all fields
+    search_fields = ('citekey', 'author')
+
 admin.site.register(Pub, PubAdmin)

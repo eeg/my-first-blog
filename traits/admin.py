@@ -11,11 +11,14 @@ class TraitInline(admin.TabularInline):
 
 class TraitAdmin(ImportExportModelAdmin, SimpleHistoryAdmin):
 
-    list_display = ('__str__', 'pubref')
+    # list_display = ('__str__', 'pubref')
+    list_display = [field.name for field in Trait._meta.get_fields()] # all the fields
+
+    search_fields = ('genus', 'species') # how to include pubref? get error if it's added here
 
     resource_class = TraitResource
 
-    #  history_list_display = ['breeding_system', 'isi', 'pubref']
+    # history_list_display = ['breeding_system', 'isi', 'pubref']
     history_list_display = [field.name for field in Trait._meta.get_fields()] # all the fields
 
     # move the changereason into the history
