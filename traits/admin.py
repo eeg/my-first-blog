@@ -7,6 +7,7 @@ from .resources import TraitResource
 class TraitInline(admin.TabularInline):
     model = Trait
     show_change_link = True
+    extra = 0
 
 class TraitAdmin(ImportExportModelAdmin, SimpleHistoryAdmin):
 
