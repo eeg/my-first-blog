@@ -2,3 +2,4 @@ Django~=2.1.7
 django-crispy-forms
 django-simple-history
 django-autocomplete-light
+django-admin-numeric-filter

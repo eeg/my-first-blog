@@ -3,6 +3,7 @@ from import_export.admin import ImportExportModelAdmin
 from simple_history.admin import SimpleHistoryAdmin
 from .models import Trait
 from .resources import TraitResource
+from admin_numeric_filter.admin import NumericFilterModelAdmin, SingleNumericFilter, RangeNumericFilter, SliderNumericFilter
 
 class TraitInline(admin.TabularInline):
     model = Trait
@@ -12,7 +13,7 @@ class TraitInline(admin.TabularInline):
 class TraitAdmin(ImportExportModelAdmin, SimpleHistoryAdmin):
 
     autocomplete_fields = ['pubref']
-    list_filter = ['genus', 'species', 'isi', 'breeding_system', 'pubref']
+    list_filter = ['genus', 'species', ('isi', RangeNumericFilter), 'breeding_system', 'pubref']
 
     # list_display = ('__str__', 'pubref')
     list_display = [field.name for field in Trait._meta.get_fields()] # all the fields

@@ -32,7 +32,9 @@ ALLOWED_HOSTS = ['127.0.0.1', '.pythonanywhere.com']
 
 INSTALLED_APPS = [
     'dal',
-    'dal_select2', # dal apps must be before django.contrib.admin
+    'dal_select2',
+    'admin_numeric_filter',
+    # the ones above must be before django.contrib.admin
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
