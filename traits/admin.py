@@ -11,6 +11,8 @@ class TraitInline(admin.TabularInline):
 
 class TraitAdmin(ImportExportModelAdmin, SimpleHistoryAdmin):
 
+    autocomplete_fields = ['pubref']
+
     # list_display = ('__str__', 'pubref')
     list_display = [field.name for field in Trait._meta.get_fields()] # all the fields
 
