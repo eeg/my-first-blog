@@ -10,10 +10,14 @@ class TraitInline(admin.TabularInline):
     show_change_link = True
     extra = 0
 
+class CustomSliderNumericFilter(SliderNumericFilter):
+    MAX_DECIMALS = 2
+    STEP = 0.01
+
 class TraitAdmin(ImportExportModelAdmin, SimpleHistoryAdmin, NumericFilterModelAdmin):
 
     autocomplete_fields = ['pubref']
-    list_filter = ['genus', ('isi', SliderNumericFilter), 'breeding_system', 'pubref']
+    list_filter = ['genus', ('isi', CustomSliderNumericFilter), 'breeding_system', 'pubref']
 
     # list_display = ('__str__', 'pubref')
     list_display = [field.name for field in Trait._meta.get_fields()] # all the fields
