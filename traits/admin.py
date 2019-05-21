@@ -14,7 +14,17 @@ class CustomSliderNumericFilter(SliderNumericFilter):
     MAX_DECIMALS = 2
     STEP = 0.01
 
-class TraitAdmin(ImportExportModelAdmin, SimpleHistoryAdmin, NumericFilterModelAdmin):
+class TraitAdmin(ImportExportModelAdmin, SimpleHistoryAdmin, NumericFilterModelAdmin, admin.ModelAdmin):
+
+    fieldsets = (
+            (None, {
+                'fields': ('genus', 'species', 'pubref')
+                }),
+            ('Reproductive traits', {
+                'classes': ('collapse',),
+                'fields': ('isi', 'breeding_system'),
+                }),
+            )
 
     autocomplete_fields = ['pubref']
     list_filter = ['genus', ('isi', CustomSliderNumericFilter), 'breeding_system', 'pubref']
